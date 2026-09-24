@@ -1,0 +1,8 @@
+/app/__pycache__
+app/acmi.py
+app/debrief.py
+app/main.py
+app/model.py
+app/raw_format.py
+app/recorder.py
+acmi_ml.zip
