@@ -1,0 +1,375 @@
+{
+  "dataset": "datasets\\all_sorties.csv",
+  "feature_names": [
+    "altitude_delta_m",
+    "ground_speed_delta_mps",
+    "ground_speed_mean_mps",
+    "total_speed_mean_mps",
+    "vertical_speed_mean_mps",
+    "sink_rate_peak_mps",
+    "climb_rate_peak_mps",
+    "track_change_deg",
+    "track_rate_mean_abs_deg_s",
+    "track_rate_peak_abs_deg_s",
+    "roll_mean_abs_deg",
+    "roll_peak_abs_deg",
+    "pitch_mean_abs_deg",
+    "pitch_peak_abs_deg",
+    "acceleration_mean_mps2",
+    "acceleration_peak_abs_mps2"
+  ],
+  "class_labels": [
+    "acceleration",
+    "climb",
+    "climbing_turn",
+    "descending_turn",
+    "descent",
+    "steady"
+  ],
+  "all_class_counts": {
+    "acceleration": 48,
+    "climb": 36,
+    "climbing_turn": 30,
+    "deceleration": 1,
+    "descending_turn": 34,
+    "descent": 68,
+    "steady": 52,
+    "turn": 2
+  },
+  "dropped_rare_classes": {
+    "deceleration": 1,
+    "turn": 2
+  },
+  "training_sources": [
+    "sortie_01.acmi",
+    "sortie_04.acmi",
+    "sortie_05.acmi"
+  ],
+  "validation_source": "sortie_02.acmi",
+  "test_source": "sortie_03.acmi",
+  "best_epoch": 34,
+  "epochs_requested": 250,
+  "seed": 42,
+  "class_weights": {
+    "acceleration": 0.8397436141967773,
+    "climb": 2.7291667461395264,
+    "climbing_turn": 3.6388888359069824,
+    "descending_turn": 1.0396825075149536,
+    "descent": 1.0916666984558105,
+    "steady": 0.43666666746139526
+  },
+  "feature_mean": [
+    -11.708351135253906,
+    -2.3198728561401367,
+    152.26966857910156,
+    163.72608947753906,
+    -2.2710111141204834,
+    16.86907386779785,
+    17.248943328857422,
+    -5.646753311157227,
+    3.413350820541382,
+    11.216487884521484,
+    21.563644409179688,
+    30.56482696533203,
+    10.4505615234375,
+    16.266782760620117,
+    -0.47350481152534485,
+    8.132383346557617
+  ],
+  "feature_std": [
+    214.12486267089844,
+    34.641265869140625,
+    67.83458709716797,
+    56.728172302246094,
+    44.20404052734375,
+    26.46845817565918,
+    48.518775939941406,
+    36.759090423583984,
+    7.076148986816406,
+    28.73656463623047,
+    40.4288215637207,
+    51.75828170776367,
+    16.944856643676758,
+    25.21455192565918,
+    4.56464958190918,
+    23.743480682373047
+  ],
+  "metrics": {
+    "train": {
+      "accuracy": 0.8778625954198473,
+      "macro_f1_present_classes": 0.8909120444208164,
+      "per_class": {
+        "acceleration": {
+          "precision": 1.0,
+          "recall": 0.6923076923076923,
+          "f1": 0.8181818181818181,
+          "support": 26
+        },
+        "climb": {
+          "precision": 1.0,
+          "recall": 0.875,
+          "f1": 0.9333333333333333,
+          "support": 8
+        },
+        "climbing_turn": {
+          "precision": 1.0,
+          "recall": 1.0,
+          "f1": 1.0,
+          "support": 6
+        },
+        "descending_turn": {
+          "precision": 0.7916666666666666,
+          "recall": 0.9047619047619048,
+          "f1": 0.8444444444444444,
+          "support": 21
+        },
+        "descent": {
+          "precision": 0.8888888888888888,
+          "recall": 0.8,
+          "f1": 0.8421052631578948,
+          "support": 20
+        },
+        "steady": {
+          "precision": 0.8448275862068966,
+          "recall": 0.98,
+          "f1": 0.9074074074074074,
+          "support": 50
+        }
+      },
+      "confusion_matrix": [
+        [
+          18,
+          0,
+          0,
+          0,
+          0,
+          8
+        ],
+        [
+          0,
+          7,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          0,
+          6,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          19,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          4,
+          16,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          1,
+          0,
+          49
+        ]
+      ]
+    },
+    "validation": {
+      "accuracy": 0.32,
+      "macro_f1_present_classes": 0.22222222222222224,
+      "per_class": {
+        "acceleration": {
+          "precision": 1.0,
+          "recall": 0.8,
+          "f1": 0.888888888888889,
+          "support": 10
+        },
+        "climb": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        },
+        "climbing_turn": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 13
+        },
+        "descending_turn": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "descent": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 0
+        },
+        "steady": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": [
+        [
+          8,
+          0,
+          0,
+          0,
+          2,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          13,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    },
+    "test": {
+      "accuracy": 0.5089285714285714,
+      "macro_f1_present_classes": 0.380088367376503,
+      "per_class": {
+        "acceleration": {
+          "precision": 0.175,
+          "recall": 0.5833333333333334,
+          "f1": 0.2692307692307692,
+          "support": 12
+        },
+        "climb": {
+          "precision": 0.625,
+          "recall": 0.7407407407407407,
+          "f1": 0.6779661016949152,
+          "support": 27
+        },
+        "climbing_turn": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 11
+        },
+        "descending_turn": {
+          "precision": 0.8333333333333334,
+          "recall": 0.7692307692307693,
+          "f1": 0.8,
+          "support": 13
+        },
+        "descent": {
+          "precision": 0.7407407407407407,
+          "recall": 0.4166666666666667,
+          "f1": 0.5333333333333333,
+          "support": 48
+        },
+        "steady": {
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "support": 1
+        }
+      },
+      "confusion_matrix": [
+        [
+          7,
+          0,
+          0,
+          0,
+          5,
+          0
+        ],
+        [
+          6,
+          20,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          11,
+          0,
+          0,
+          0,
+          0
+        ],
+        [
+          0,
+          1,
+          0,
+          10,
+          2,
+          0
+        ],
+        [
+          26,
+          0,
+          0,
+          2,
+          20,
+          0
+        ],
+        [
+          1,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      ]
+    }
+  }
+}

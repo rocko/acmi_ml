@@ -6,3 +6,5 @@ app/model.py
 app/raw_format.py
 app/recorder.py
 acmi_ml.zip
+/.venv
+/__pycache__
