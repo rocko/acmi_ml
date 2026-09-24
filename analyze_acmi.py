@@ -16,7 +16,7 @@ except ImportError:
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
-        prog="DCS-NotTacView Flight Analyzer",
+        prog="ACMI ML",
         description=(
             "Stream one aircraft from a loose or ZIP-compressed ACMI recording "
             "and run its derived telemetry features through an ONNX model."

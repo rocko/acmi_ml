@@ -44,25 +44,13 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("acmi_file", type=Path)
     parser.add_argument("--model", type=Path, required=True)
     parser.add_argument("--aircraft-id", default=None)
-
     parser.add_argument("--start-time", type=float, default=None)
     parser.add_argument("--end-time", type=float, default=None)
-
     parser.add_argument("--window-seconds", type=float, default=5.0)
     parser.add_argument("--stride-seconds", type=float, default=1.0)
     parser.add_argument("--min-samples", type=int, default=5)
-
-    parser.add_argument(
-        "--min-confidence",
-        type=float,
-        default=0.0,
-    )
-
-    parser.add_argument(
-        "--show-bootstrap-label",
-        action="store_true",
-        help="Also print the heuristic label for comparison.",
-    )
+    parser.add_argument("--min-confidence", type=float, default=0.0)
+    parser.add_argument("--show-bootstrap-label", action="store_true", help="Also print the heuristic label for comparison.")
 
     return parser
 
@@ -151,7 +139,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     input_name = model_inputs[0].name
     output_name = model_outputs[0].name
 
-    samples = iter_acmi_file(args.acmi_file, aircraft_id=args.aircraft_id, start_time=args.start_time, end_time=args.end_time    )
+    samples = iter_acmi_file(args.acmi_file, aircraft_id=args.aircraft_id, start_time=args.start_time, end_time=args.end_time)
     windows = iter_flight_windows(samples, window_seconds=args.window_seconds, stride_seconds=args.stride_seconds, min_samples=args.min_samples)
 
     window_count = 0
@@ -162,10 +150,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
         features = _window_features(window)
 
-        logits = session.run(
-            [output_name],
-            {input_name: features},
-        )[0]
+        logits = session.run([output_name], {input_name: features})[0]
 
         if logits.ndim != 2 or logits.shape[0] != 1:
             raise ValueError(f"Unexpected ONNX output shape: {logits.shape}")
