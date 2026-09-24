@@ -1,6 +1,6 @@
 # ACMI ML
 
-Machine-learning pipeline for classifying aircraft maneuver states from ACMI flight telemetry.
+Machine-learning pipeline for classifying aircraft maneuver states from flight telemetry.
 
 The project covers the complete workflow from raw telemetry and feature engineering to model training, evaluation, ONNX export, and inference with ONNX Runtime.
 
@@ -11,12 +11,12 @@ The current dataset is generated from flight recordings created in DCS World and
 
 ## Overview
 
-ACMI recordings contain time-series information about aircraft position and attitude. `acmi_ml` transforms this telemetry into fixed-duration flight windows and uses derived kinematic features to classify basic maneuver states.
+Telemetry recordings contain time-series information about aircraft position and attitude. `acmi_ml` transforms this telemetry into fixed-duration flight windows and uses derived kinematic features to classify basic maneuver states.
 
 The current pipeline is:
 
 ```text
-ACMI recording
+recording
     ↓
 telemetry parsing
     ↓
@@ -49,7 +49,7 @@ combined climbing and descending turns
 more irregular maneuvering
 approach and landing phases
 
-The ACMI format is used as the interface between the larger telemetry-viewer project and this standalone ML pipeline.
+The recording format is used as the interface between the larger telemetry-viewer project and this standalone ML pipeline.
 
 
 ## Feature Engineering
@@ -219,6 +219,8 @@ python -m pip install -r requirements.txt
 
 ## Generate dataset
 
+... with bootstrap labeling
+
 ```bash
 .\build_dataset.bat
 ```
@@ -230,13 +232,13 @@ manually using fixed weights.
 
 Its purpose was to validate:
 
-ACMI -> feature extraction -> tensor creation -> ONNX Runtime -> result
+ACMI-compatible recording -> feature extraction -> tensor creation -> ONNX Runtime -> result
 
 The model was not trained and its predictions are not intended to represent
 meaningful flight analysis.
 
 ```bash
-python classify_acmi.py `
+python classify_recording.py `
     "raw\sortie_01.acmi" `
     --model models\flight_analyzer_demo.onnx `
     --aircraft-id 1
@@ -256,7 +258,7 @@ python train_flight_classifier.py `
 ```
 
 ```bash
- python classify_acmi.py raw/sortie_03.acmi `
+ python classify_recording.py raw/sortie_03.acmi `
     --model models\flight_classifier_v1\flight_classifier.onnx `
     --aircraft-id 1 `
     --show-bootstrap-label
